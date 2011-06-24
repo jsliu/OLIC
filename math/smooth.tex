@@ -1,0 +1,32 @@
+% LaTeX file for a 1 page document
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage{amsmath,amssymb,amsfonts} % Typical maths resource packages
+\usepackage{geometry}
+
+\setlength{\textwidth}{6.3in}
+\setlength{\textheight}{8.7in}
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+
+\pagestyle{plain}
+
+\begin{document}
+Considering a smoothing distribution
+\begin{eqnarray*}
+\Pr(C_t,Q_t|\sigma^2, \beta_0,y_{1:T}) &\propto& 
+\Pr(C_t,Q_t,\sigma^2,\beta_0|y_{1:T}) \\
+&\propto& \Pr(C_t,Q_t,\sigma^2,\beta_0|y_{1:t})
+\Pr(y_{t+1:T}|C_t,Q_t,\sigma^2,\beta_0,y_{1:t}) \\
+&\propto& \Pr(C_t,Q_t,\sigma^2,\beta_0|y_{1:t}) \\
+&=& \Pr(C_t,Q_t|y_{1:t})\Pr(\sigma^2,\beta_0|C_t,Q_t,y_{1:t}) \\
+&=& \Pr(C_t,Q_t|y_{1:t})\Pr(\sigma^2|C_t,Q_t,y_{1:t})
+\Pr(\beta_0|C_t,Q_t,\sigma^2,y_{1:t}).
+\end{eqnarray*}
+When $t=T$, we can simulate $\sigma^2$ from $\Pr(\sigma^2|y_{1:T})$ first, 
+then calculate the posterior distribution $\Pr(\sigma^2|C_t,Q_t,y_{1:t})$.
+
+
+\end{document}

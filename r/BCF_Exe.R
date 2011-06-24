@@ -1,0 +1,46 @@
+# simulate change points and model choices
+#source("rmOutlier.R")
+#y <- (y-115000)/10000
+source("hs500.R")          # use gama=1000, nu=1000 for discontinuous model
+#source("bk500.R")
+#source("bp500.R")
+#source("dp500.R")
+#y <- rev(y)
+#x <- seq(0,1,length=length(y)) 
+
+source("simBCF.R")     
+#source("ISweight.R")
+
+par(mfrow=c(2,1))
+# delta=c(4,1000,10000)^2 for well-log data
+sim.out <- sim.bcf(y,x,sample.size=1000)
+    
+# piecewise constant model
+#sim.out <- sim.bcf(y,x,order=1,delta=16,sample.size=1000,gama=2,nu=2,prior.model=c(1,0))
+
+# discontinuous model
+#sim.out <- sim.bcf(y,x,sample.size=1000,gama=1000,nu=1000,prior.model=rep(1/3,3),continuity=F)
+
+margin.out <- margin(y,sample.size=1000)
+#x11()
+out <- para.sim(y,x,margin.out)
+
+# piecewise constant model; delta=16 for well-log data
+#out <- para.sim(y,x,margin.out,ord=1,delta=100,gama=2,nu=2)
+
+# discontinuous model
+#out <- para.sim(y,x,margin.out,gama=1000,nu=1000,continuity=F)
+
+source("ISweight.R")
+# Importance sampling weights
+out.wei <- ISweight(y,x,margin.out$changepoint,margin.out$modelchoice,
+                gama=1000,nu=1000,delta=c(1e+2,1e+3,1e+4)^2)
+
+
+# normalising the weights
+par(mfrow=c(2,1))
+wei <- normalise(out.wei)
+y.fit <- curve.res(out$y,wei)
+
+# true curve
+#plot(x,y.true,type="l",ylab="y",xlab="Time",main="True curve",ylim=range(min(y),max(y)),col=2)
