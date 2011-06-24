@@ -1,0 +1,7 @@
+OLIC version 1.0 (C) 2005-2011
+by Jason Liu
+
+A R package (driven by C++) for running on-line inference for multiple changepoints model [1][2].
+
+[1] Efficient Bayesian Analysis of Multiple Changepoint Models with Dependence across Segments. Fearnhead, P. and Liu, Z.,  Statistics and Computing, 21, 217-229, 2011
+[2] On-line inference for multiple changepoints problems. Fearnhead, P. and Liu, Z., JRSS, B. 69 589-605, 2007
