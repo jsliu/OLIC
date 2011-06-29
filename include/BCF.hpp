@@ -67,7 +67,7 @@ class DistBCF:public BCF
 {
 public:
   DistBCF(double*, double*, int, int, double*, double, double, double, double*);
-  ~DistBCF();
+  virtual ~DistBCF();
   
   // calculate Pr(C_t|y_{1:t}) and block, also return the logliklihood
   void calc_weight(int, int);
@@ -84,7 +84,7 @@ class MixBCF:public BCF
 {
 public:
   MixBCF(double*, double*, int, int, double*, double, double, double, double*);
-  ~MixBCF();
+  virtual ~MixBCF();
   
   // calculate Pr(C_t|y_{1:t}) and block also return the logliklihood
   void calc_weight(int, int);                         
